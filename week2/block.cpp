@@ -1,6 +1,10 @@
+/*
+C++ Review
+2D Dynamic Array Example with User-defined Data Type
+*/
+
 #include <iostream>
-using std::cout, std::endl;
-using std::cin, std::ostream;
+using namespace std;
 
 // Struct Block (x and y are the members of the Struct)
 struct Block {
@@ -9,7 +13,7 @@ struct Block {
 
 // Print a block with the members (x and y)
 ostream& operator<<(ostream& out, Block block) {
-  out << block.x << ":" << block.y;pp
+  out << block.x << ":" << block.y;
   return out;
 }
 
