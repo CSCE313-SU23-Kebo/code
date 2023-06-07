@@ -28,5 +28,5 @@ int main() {
   for (size_t y = 0; y < height; ++y) {
     delete[] grid[y];
   }
-  delete[] grid;
+  delete[] grid; // Forget? 
 }
