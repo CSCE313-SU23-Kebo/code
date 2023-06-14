@@ -24,10 +24,11 @@ int main()
 
 	// writing a string "code" in pipe
 	write(fd[1], "code\n", 6);  // write(pipe end, string, number of bytes)
-	printf("\n");
+	printf("Writing to the pipe\n");
 
 	// reading pipe now buff is equal to "code"
 	read(fd[0], buff, 6);
+	printf("Reading from the pipe\n");
 
 	// it will print "code"
 	printf("%s", buff);

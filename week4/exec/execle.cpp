@@ -1,5 +1,5 @@
 /*
-Example: Execvp
+Example: execle
  */
 
 #include <iostream>

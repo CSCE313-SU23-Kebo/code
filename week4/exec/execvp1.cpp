@@ -1,5 +1,5 @@
 /*
-Example: Execvp
+Example: execvp
  */
 
 #include <iostream>
@@ -13,5 +13,11 @@ int main()
     cout << "=====BEFORE========" << endl;
     execvp(args[0], args);
     cout << "======AFTER========" << endl;
+
+    // e.g for the PA1
+    pid_t server_pid = fork();
+    int buffer_size;
+    char *args[] = {"./server", "-m", buffer_size};
+    execvp(args[0], args);
 }
 

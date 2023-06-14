@@ -15,9 +15,9 @@ Parent is acting like 'bash' interpreting the command line: $ ls | sort
 
 int main(int argc, char* argv[]){
 
-    int pipefd[2];
-    char buffer[10];
-    pid_t child_pid;
+    int pipefd[2]; // Array of file descriptors
+    char buffer[10]; // Data
+    pid_t child_pid; // Process ID
     memset(buffer, 0, sizeof(buffer)); /* Clear the buffer */
 
     /* Open the pipe */
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
         /* 'sort' closes unused write end of the pipe */
         close(pipefd[1]);
         /* ...and uses the read end as standard input */
-        dup2(pipefd[0], STDIN_FILENO);
+        dup2(pipefd[0], STDIN_FILENO); // >>>>>>>
         /* Reading from "stdin" now reads from the pipe */
         ssize_t bytes_read = read(STDIN_FILENO, buffer, sizeof(buffer));
         if (bytes_read <= 0)
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
         /* 'ls' closes the read end of the pipe */
         close(pipefd[0]);
         /* ...and uses the write end as standard output */
-        dup2(pipefd[1], STDOUT_FILENO);
+        dup2(pipefd[1], STDOUT_FILENO); // >>>>
 
         /* printf() now writes to the pipe instead of the screen */
         printf("list of files\n");

@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
 		while(read(pipefds[0],buf,1)==1){
 			printf("CHILD read from pipe --%s\n",buf);
 		}
-		close(pipefds[0]);s-
+		close(pipefds[0]);
 		printf("CHILD: EXITING!");
 		exit(EXIT_SUCCESS);
 

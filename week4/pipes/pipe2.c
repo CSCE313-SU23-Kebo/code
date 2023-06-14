@@ -1,5 +1,6 @@
 /*
 Example: fork() and pipe()
+The parent process writes to the child process.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,8 +10,10 @@ Example: fork() and pipe()
 
 int main(int argc, char* argv[]){
 	int pipefds[2]; // Array of file descriptor
-	pid_t pid;
-	char buf[30];
+	pid_t pid; // Process ID
+
+	char buf[30]; // Some text
+
 	//create pipe
 	if(pipe(pipefds)==-1){
 		perror("pipe");
@@ -18,6 +21,7 @@ int main(int argc, char* argv[]){
 	}
 
 	memset(buf,0,30);
+
 	pid = fork(); // Create one child process - system call
 	/*
 	What are the return values of the fork() function
@@ -34,12 +38,13 @@ int main(int argc, char* argv[]){
 		 //parent close the read end
 		close(pipefds[0]);
 		//parent write in the pipe write end
-		write(pipefds[1],"CSCI3150",9);
+		write(pipefds[1],"CSCE3150",9);
 		//after finishing writing, parent close the write end
 		close(pipefds[1]);
 		//parent wait for child
 		wait(NULL); // Wait for the child process to read the string.
-	}else{
+	}
+	else{
 		//child close the write end
 		close(pipefds[1]); // Close the write end on the child
 		//child read from the pipe read end until the pipe is em

@@ -1,5 +1,5 @@
 /*
-Example: Execvp
+Example: execlp
  */
 
 #include <iostream>
@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    const char *file = "arithmetic";
+    const char *file = "factorial";
     const char *arg1 = "Hello world!";
     execlp(file, file, arg1, NULL);
     return 0;
