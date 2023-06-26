@@ -20,7 +20,8 @@ int main()
         perror("fork() error");
     else if (pid == 0)
     {
-        sleep(5);
+        printf(" This is the Child process ID is %d\n", getpid());
+        sleep(20);
         exit(1);
     }
     else

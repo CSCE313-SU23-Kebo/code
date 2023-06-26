@@ -11,9 +11,10 @@ int main()
 {
     int i;
     int pid = fork();
-    if (pid == 0)
+    if (pid == 0){
         for (i=0; i<20; i++)
             printf("I am Child\n");
+    }
     else
     {
         signal(SIGCHLD,SIG_IGN);
