@@ -16,12 +16,13 @@ int main()
 	int fd = open("sample.txt", O_RDONLY, 0);
 	if (fork() == 0 ){
 		read(fd, &c, 1); // In the child read one character from Minecraft - character 'M'
+		printf("Child --- c = %c\n", c);
 		return 0; 
 	}
 	else {
 		wait(0);
 		read(fd, &c, 1); // In the parent read one character from Minecraft - character 'i'
-		printf("c = %c\n", c);
+		printf("Parent --- c = %c\n", c);
 	}
 
 	exit(0);
