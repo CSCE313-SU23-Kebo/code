@@ -14,6 +14,8 @@ std::mutex g_mutex;
 std::condition_variable g_cv;
 bool g_ready = false;
 
+
+// Producer
 void workThread() {
   // Simulate work for 60 seconds 
   std::cout << "Starting work thread ... \n";
@@ -24,11 +26,14 @@ void workThread() {
   g_cv.notify_one();
 }
 
+// Consumer
 void waitThread() {
   std::cout << "Inside wait thread ... \n";
   std::unique_lock<std::mutex> ul(g_mutex);
-  g_cv.wait(ul, [] { return g_ready; });
+  g_cv.wait(ul, [] { return g_ready; }); // Predicate
   std::cout << "Wait Thread Executed! \n";
+
+  // Unique lock with automatically released
 }
 
 int main() {

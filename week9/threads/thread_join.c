@@ -38,5 +38,5 @@ int main()
         exit(3);
     }
 
-    printf("thread exited with %s\n", ret);
+    printf("thread exited with: %s\n", ret);
 }

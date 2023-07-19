@@ -11,12 +11,15 @@ using namespace std;
 std::mutex g_mutex;
 bool g_ready = false;
 
+// producer
 void workThread() {
   std::this_thread::sleep_for(std::chrono::seconds(60));
   std::unique_lock<std::mutex> ul(g_mutex);
   g_ready = true;
 }
 
+
+// Consumer
 void waitThread() {
   while(!g_ready){
 

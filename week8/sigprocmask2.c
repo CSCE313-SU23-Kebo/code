@@ -1,6 +1,6 @@
 /*
 Example of signal sets and sigprocmask
-Note: When the program is exucating, type Control-backslash, in the terminal to send a quit signal.
+Note: When the program is executing, type Control-backslash, in the terminal to send a quit signal.
 
 Example:
 $ ./a.out
@@ -16,6 +16,8 @@ SIGQUIT pending
 caught SIGQUIT          signal is generated only once
 SIGQUIT unblocked
 ˆ\Quit(coredump)        generate signal again
+
+^\: means control + backslash
 */
 
 #include "apue.h"
@@ -67,10 +69,12 @@ int main(void)
     exit(0);
 }
 
-// Handler for SIG_QUIT
+// Custom Handler for SIG_QUIT
 static void sig_quit(int signo)
 {
     printf("caught SIGQUIT\n");
+
+    // Fallback to the behavior
     if (signal(SIGQUIT, SIG_DFL) == SIG_ERR)
         printf("can’t reset SIGQUIT");
 }

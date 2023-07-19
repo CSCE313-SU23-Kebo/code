@@ -19,9 +19,10 @@ void* place_order(void* arg)
 
 	printf("\n Order #%d received\n", order);
 
-	// Delay for some time
+	// Wait for some time -- (delay)
 	for (i = 0; i < (0xFFFFFFFF); i++) 
 		;
+		
 	printf("\n Order #%d is ready\n", order);
 
 	return NULL;
@@ -32,16 +33,16 @@ int main(void)
 	int i = 0;
 	int error;
 
-	// Create a thread for the two clients
+	// Place orders for two customers
 	while (i < 2) {
-		// Call the place_order function for each thread
+		// Create the threads
 		error = pthread_create(&(tid[i]), NULL, &place_order, NULL);
 		if (error != 0)
 			printf("\nThread can't be created : [%s]", strerror(error));
 		i++;
 	}
 
-	// Wait for both threads to complete execution
+	// Wait on both threads to finish
 	pthread_join(tid[0], NULL);
 	pthread_join(tid[1], NULL);
 

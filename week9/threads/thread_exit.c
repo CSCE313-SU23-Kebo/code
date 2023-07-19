@@ -15,6 +15,7 @@ void *thr_fn2(void *arg)
     printf("thread 2 exiting\n");
     pthread_exit((void *)2);
 }
+
 int main(void)
 {
     int err;
@@ -31,13 +32,13 @@ int main(void)
     if (err != 0)
         printf("can’t create thread 2");
 
-    // Wait for thread 1 to end
+    // Wait for thread 1 to end and capture the exit status value in tret
     err = pthread_join(tid1, &tret);
     if (err != 0)
         printf("can’t join with thread 1");
     printf("thread 1 exit code %ld\n", (long)tret);
 
-    // Wait for thread 2 to end
+    // Wait for thread 2 to end and capture the exit status value in tret
     err = pthread_join(tid2, &tret);
     if (err != 0)
         printf("can’t join with thread 2");

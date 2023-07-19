@@ -18,10 +18,10 @@ int main()
     sa.sa_handler = handler;
 
     // Empty the mask set for this sigaction -> this means that we can capture ALL signals
-    sigemptyset(&sa.sa_mask); 
+    sigemptyset(&sa.sa_mask);  // New
 
     // System calls interrupted by this signal are automatically restarted.
-    sa.sa_flags = SA_RESTART | SA_SIGINFO;
+    sa.sa_flags = SA_RESTART | SA_SIGINFO; // New
 
     // Change the action of SIGINT
     if (sigaction(SIGINT, &sa, NULL) == -1)

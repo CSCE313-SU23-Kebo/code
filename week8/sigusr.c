@@ -1,13 +1,17 @@
 /*
 This example shows a signal handler that catches either of the two user-defined signals and prints the signal number.
 We invoke the program in the background and use the kill(1) command to send it signals.
-The kill(1) command and the kill(2) function just send a signal to a process or process group. Whether that signal terminates the process depends on which signal is sent and whether the process has arranged to catch the signal.
+The kill(1) command and the kill(2) function just send a signal to a process or process group. 
+Whether that signal terminates the process depends on which signal is sent and whether the process has arranged to catch the signal.
 */
 #include "apue.h"
 static void sig_usr(int); /* one handler for both signals */
 
 int main(void)
 {
+    pid_t process_id = getpid();
+    printf("Process ID: %i\n", process_id);
+    printf("Waiting for a signal ...\n");
     if (signal(SIGUSR1, sig_usr) == SIG_ERR) // Disposition for SIGUSR1
         printf("can’t catch SIGUSR1");
     if (signal(SIGUSR2, sig_usr) == SIG_ERR) // Disposition for SIGUSR2
